@@ -2,18 +2,19 @@
 //echo $argv[0] . "-" . $argv[1] .  "-" . $argv[2] . "\n\r";
 
 //RUN A SCAN
-if (isset($argv[1]) && $argv[1] == "run"){
-	echo "RUN---- \r\n";
-	$cmd = "nmap -T4 -A -v 172.16.1.1/16";
+if (isset($argv[1]) && $argv[1] == "scan" && isset($argv[2])){
+	echo "CMD: SCAN  \r\n";
+	$cmd = "nmap -T4 -A -v " . $argv[2];
 	$outputfile = "nmap_output.txt";
 	$pidfile = "nmap_pid.txt";
 
 	$pid = exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $cmd, $outputfile, $pidfile));
-	var_dump($pid);
+	//var_dump($pid);
+	echo $pid;
 
 //CHECK STATUS OF SCAN
 }elseif (isset($argv[1]) && $argv[1] == "status"){
-	echo "STATUS---- \r\n";
+	echo "CMD: STATUS \r\n";
 	function isRunning($pid){
 	        try{
 	                $result = shell_exec(sprintf("ps %d", $pid));
@@ -36,9 +37,10 @@ if (isset($argv[1]) && $argv[1] == "run"){
 
 //LIST ALL SCANS PID'S
 }elseif (isset($argv[1]) && $argv[1] =='list'){
-	echo "LIST ---- \r\n";
+	echo "CMD: LIST \r\n";
 	echo shell_exec("cat nmap_pid.txt");
 
+//KILL ALL SCANS
 }elseif (isset($argv[1]) && $argv[1] == 'killall'){
 
 	$lines = file('nmap_pid.txt');
@@ -50,6 +52,13 @@ if (isset($argv[1]) && $argv[1] == "run"){
 	exec('truncate -s 0 nmap_pid.txt');
 }else {
 	echo "No proper argument issued.\r\n";
+	echo "Enter commands below. \r\n";
+	echo "==============================\r\n";
+	echo "scan [host] \r\n";
+	echo "list \r\n";
+	echo "status [pid] \r\n";
+	echo "killall \r\n";
+
 }
 
 ?>

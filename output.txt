@@ -1,9 +1,0 @@
-
-Starting Nmap 7.01 ( https://nmap.org ) at 2016-11-27 18:08 EST
-NSE: Loaded 132 scripts for scanning.
-NSE: Script Pre-scanning.
-Initiating NSE at 18:08
-Completed NSE at 18:08, 0.00s elapsed
-Initiating NSE at 18:08
-Completed NSE at 18:08, 0.00s elapsed
-Initiating Ping Scan at 18:08

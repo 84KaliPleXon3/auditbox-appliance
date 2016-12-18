@@ -1,0 +1,32 @@
+NOTES
+
+read TARGETS
+get target ID
+create SCAN
+read scan ID
+
+start scan ID
+watch for scan ISDONE
+retrieve REPORT
+delete scan task ID
+
+omp --xml='<get_report_formats />'
+
+omp --xml='<get_reports report_id="" format_id="5057e5cc-b825-11e4-9d0e-28d24461215b" />'
+
+
+
+
+
+
+omp -iX '<get_tasks task_id='$scanid' details="1"/>' | grep 'report id' > reportid
+
+reportid=$(awk '{print substr($0,22,64)}' reportid)
+
+omp --get-report $reportid --format $report > $d.$ext
+
+#omp -D $scanid
+
+#omp -X '<delete_target target_id="'$targetid'"/>'
+
+#cd .. && rm -rf openvastmp

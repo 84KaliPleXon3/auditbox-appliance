@@ -30,3 +30,18 @@ omp --get-report $reportid --format $report > $d.$ext
 #omp -X '<delete_target target_id="'$targetid'"/>'
 
 #cd .. && rm -rf openvastmp
+
+
+
+ 
+service openvas-manager restart
+service openvas-scanner restart
+service openvas-gsa restart
+openvas-start
+
+
+openvasmd --create-user=admin --role=Admin
+openvasmd --user=admin --new-password=NEWPASSWORD
+
+http://itsol.biz/openvas-status-code-503-status-message-service-temporarily/
+

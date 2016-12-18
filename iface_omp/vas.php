@@ -1,5 +1,21 @@
 #!/usr/bin/php
 <?php
+
+/**
+* OpenVAS Management function library
+*
+* Long description for file (if any)...
+*
+* OpenVAS Management for AuditBox NESS
+*
+* @package    
+* @author     Sebastian R. Usami <prophetnite>
+* @copyright  2016 NewEngland Secure
+* @license    
+* @version    0.01b
+* @link       http://github.com/prophetnite/auditbox
+*/
+
 if (PHP_SAPI != "cli") {
     exit;
 }
@@ -69,7 +85,7 @@ This is a command line PHP script to manage OpenVAS scans.
 	// CREATE TARGET
 	}elseif (isset($argv[1]) && $argv[1] == 6){
 	    echo "Create Target \r\n\r\n";
-		create_target('localhost','auditbox');
+		create_target('newenglandsecure.com','auditbox');
 
 	// CREATE TASK
 	}elseif (isset($argv[1]) && $argv[1] == 7){

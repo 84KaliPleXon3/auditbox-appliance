@@ -25,8 +25,10 @@ while [ ! -s isdone ];
 do
 	rm isdone
 	sleep 3
+	scanPercent=$(omp -G | grep $scanid | cut -d' ' -f 5)
 	#duration=$((( SECONDS - start) / 60))
-	echo Watching . . .  #$duration
+	echo Watching . . .  $scanPercent
+	#Stput cup 0 lines;  # ATTEMPT TO POSITION CURSOR FOR STATUS UPDATE 
 	omp -G | grep $scanid | grep Done >  isdone
 done
 

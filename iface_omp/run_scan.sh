@@ -14,7 +14,8 @@ omp -T | grep auditbox |head -c 36 > target_id
 targetid=$(cat target_id)
 
 ./vas.php 7 localscan MyLocalScanTest daba56c8-73ec-11df-a475-002264764cea $targetid
-scanid=$(omp -G | grep localscan| head -c 36)
+omp -G | grep localscan| head -c 36 >  scan_id
+scanid=$(cat scan_id)
 
 omp -S $scanid
 omp -G | grep $scanid | grep Done > isdone
@@ -23,7 +24,9 @@ echo Beginning Scan . . .
 
 while [ ! -s isdone ];
 do
-	rm isdone
+	rm isdone;
+	scanid=$(cat scan_id)
+	
 	sleep 3
 	scanPercent=$(omp -G | grep $scanid | cut -d' ' -f 5)
 	#duration=$((( SECONDS - start) / 60))
@@ -48,7 +51,7 @@ omp -i --xml='<get_tasks task_id="'$scanid'" details="1" />' | grep 'report id' 
 #reportid=$(awk '{print substr($0,22,64)}' reportid)
 reportid=$(cat reportid)
 
-omp --get-report $reportid > ./reports/report_$(date +%Y-%m-%d_%H:%M).xml
+omp -i --get-report $reportid > ./reports/report_$(date +%Y-%m-%d_%H:%M).xml
 omp -D $scanid
 
 #omp -X '<delete_target target_id="'$targetid'"/>'

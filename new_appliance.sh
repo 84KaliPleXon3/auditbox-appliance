@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 # ------------------------------------------------------------------
 # [prophetnite] 
 #          Setup new AuditBox Appliance 
@@ -47,8 +46,7 @@ openvasmd --user=admin --new-password=galactica
 #apt-get upgrade
 #---------------------------------------
 
-
-#setup ~/omp.config
+#setup ~/omp.config  OpenVAS authentication
 #-------------------------------
 echo '[Connection] 
 host=localhost
@@ -56,6 +54,12 @@ port=9390
 username=admin
 password=galactica' > ~/omp.config
 #---------------------------------
+
+#--------------------------------------
+#install vmwaretools as nessesary
+#apt-get update
+#apt-get upgrade
+#---------------------------------------
 
 ------As required-------- vbox guest additions--------------
 sudo apt-get install build-essential linux-headers-$(uname -r)

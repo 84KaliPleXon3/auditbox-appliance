@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+#For remote server to request password resets
+
+eval spawn passwd [lindex $argv 0]
+
+expect "word:"
+
+send_user "found prompt"
+
+send -- [lindex $argv 1]
+send "\n"
+
+expect "word:"
+
+send -- [lindex $argv 1]
+send "\n"
+
+expect {
+        "denied"        exit
+        "unknown"       exit
+        eof             exit
+}
+
+expect eof

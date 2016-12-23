@@ -33,15 +33,29 @@ omp --get-report $reportid --format $report > $d.$ext
 
 
 
- 
-service openvas-manager restart
-service openvas-scanner restart
-service openvas-gsa restart
-openvas-start
+//////////////////////////////// 
+service openvas-manager stop
+service openvas-scanner stop
+service openvas-gsa stop
+openvas stop
+killall screen
+service openvas-manager start
+service openvas-scanner start
+service openvas-gsa start
+openvas start
+///////////////////////////////////
 
-
-openvasmd --create-user=admin --role=Admin
-openvasmd --user=admin --new-password=NEWPASSWORD
 
 http://itsol.biz/openvas-status-code-503-status-message-service-temporarily/
+
+
+
+TODO:
+
+change userlogin to emamil address
+current login name is checked against first_name
+no max devices, however, max jobs per device is 2.
+
+on report page, highlight vulnerabiliies over 3 in red
+
 

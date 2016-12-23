@@ -13,6 +13,21 @@
 omp -T | grep auditbox |head -c 36 > target_id
 targetid=$(cat target_id)
 
+
+#GW NIC not fully imlemented, must be passed to vas.php 7 to create new target correctly
+# determine the gateway interface nic
+if [ "`uname`" = "GNU/kFreeBSD" ]; then
+        gwNic=`netstat -r -f inet -n | grep ^default | awk '{print $6;}'`
+else
+        gwNic=$(route -n | grep '^0.0.0.0 ' | tail -n1 | awk '{print $8}')
+fi
+
+# if for some reason gateway interface can't be determined, use eth0
+if [ "$gwNic" = '' ]; then
+        gwNic='eth0'
+fi
+
+
 ./vas.php 7 localscan MyLocalScanTest daba56c8-73ec-11df-a475-002264764cea $targetid
 omp -G | grep localscan| head -c 36 >  scan_id
 scanid=$(cat scan_id)

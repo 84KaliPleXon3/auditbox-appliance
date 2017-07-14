@@ -20,25 +20,25 @@ then
 	exit
 fi
 
-echo Beginning New Aapliance setup...
+echo Beginning New Appliance setup...
 
 
-sudo apt-get install xfce4
-sudo apt-get install nmap firefox terminator
+sudo apt-get install -y xfce4
+sudo apt-get install -y nmap firefox terminator
 
 #-- install openvas ---------
 sudo add-apt-repository ppa:mrazavi/openvas
 sudo apt-get update
-sudo apt-get install openvas9
+sudo apt-get install -y openvas9
 
-sudo apt-get install sqlite3
+sudo apt-get install -y sqlite3
 sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
 
 #-- install openvas extras -- for reporting -------
-sudo apt-get install texlive-latex-extra --no-install-recommends
-sudo apt-get install libopenvas9-dev
+sudo apt-get install -y texlive-latex-extra --no-install-recommends
+sudo apt-get install -y libopenvas9-dev
 
 #-- Start OpenVAS first time ------------
 sudo service openvas-scanner restart
@@ -64,14 +64,13 @@ username=admin
 password=galactica' > ~/omp.config
 #---------------------------------
 
-#--------------------------------------
-#install vmwaretools as nessesary
+------As required---- vmwaretools-------
 #apt-get update
 #apt-get upgrade
 #---------------------------------------
 
-------As required-------- vbox guest additions--------------
-sudo apt-get install build-essential linux-headers-$(uname -r)
-sudo apt-get install virtualbox-guest-x11
+------As required---- vbox guest additions-------------------
+#sudo apt-get install -y build-essential linux-headers-$(uname -r)
+#sudo apt-get install -y virtualbox-guest-x11
 -------------------------------------------------------------
 

@@ -27,7 +27,7 @@ sudo apt-get install -y xfce4
 sudo apt-get install -y nmap firefox terminator
 
 #-- install openvas ---------
-sudo add-apt-repository ppa:mrazavi/openvas
+sudo add-apt-repository ppa:mrazavi/openvas -y
 sudo apt-get update
 sudo apt-get install -y openvas9
 
